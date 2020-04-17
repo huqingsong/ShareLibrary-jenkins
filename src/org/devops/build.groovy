@@ -1,6 +1,7 @@
 package org.devops
 
 //构建打包
+/*
 def Build(javaVersion,buildType,buildDir,buildShell){
     if (buildType == 'maven'){
         Home = tool '/usr/local/apache-maven'
@@ -38,6 +39,13 @@ def Build(javaVersion,buildType,buildDir,buildShell){
             cd ${buildDir} && ${buildHome} ${buildShell}
             """
     }
+}
+*/
+def Build(buildType, buildShell){
+    def buildTools = ["mvn": "M3", "ant":"Ant", "npm": "NPM"]
+    println("当前的构建类型为：${buildType}")
+    buildHome = tool buildTools[buildType]
+    sh "${buildHome}/bin/buildType ${buildShell}"
 }
 
 
